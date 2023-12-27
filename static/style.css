@@ -1,0 +1,137 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+div {
+    display: block;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #eeeeee;
+}
+
+/* BODY */
+.chatList {
+    margin: 0;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    height: 500px;
+    width: 800px;
+}
+
+.titleChat {
+    background-color: #D79FF5;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+    padding-left: 30px;
+}
+
+.chatMessages {
+    overflow-y: scroll;
+    height: 380px;
+}
+
+/* ENTER/SEND */
+.chatInputs {
+    position: absolute;
+    bottom: 0;
+    padding-top: 10px;
+}
+
+.chatInputs input {
+    width: 660px;
+    height: 50px;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+    border-bottom: 1px solid #DDDDDD;
+    outline: none;
+    margin-left: 5px;
+}
+
+.chatInputs button {
+    width: 105px;
+    height: 50px;
+    margin-bottom: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #B956EE;
+    font-weight: bold;
+    font-size: 15px;
+    color: white;
+    border-radius: 0 6px 0 6px;
+    transition: 0.2s ease-in-out;
+}
+
+.chatInputs button:hover {
+    border-radius: 6px;
+    transition: 0.2s ease-in-out;
+}
+
+.chatInputs button:focus {
+    border-radius: 6px 0 6px 0;
+    transition: 0.2s ease-in-out;
+}
+
+/* BODY MESSAGES */
+
+.leftMessage, .rightMessage {
+    width: 100%;
+    height: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin: 5px 0;
+}
+
+.leftMessageContent {
+    background-color: #EDD8F9;
+    width: auto;
+    min-width: 15%;
+    max-width: 50%;
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 8px 8px 8px 0;
+}
+
+.rightMessage {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.rightMessageContent {
+    background-color: #EDD8F9;
+    width: auto;
+    min-width: 15%;
+    max-width: 40%;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 8px 8px 0 8px;
+    display: flex;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+    width: 3px;
+}
+  
+::-webkit-scrollbar-track {
+    background: white;
+}
+  
+::-webkit-scrollbar-thumb {
+    background: #B549F3;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: #7713B0;
+}
