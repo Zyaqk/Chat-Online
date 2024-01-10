@@ -6,6 +6,7 @@
     <title>UNIXE-CHAT</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <script src="https://cdn.socket.io/4.5.3/socket.io.min.js"></script>
     <script src='script.js'></script>
 </head>
 <body>
@@ -13,7 +14,7 @@
         <div class="titleChat">
             <h1>UNIXE-CHAT</h1>
         </div>
-        <div class="chatMessages">
+        <div class="chatMessages" id="messages">
             <div class="leftMessage">
                 <div class="leftMessageContent">
                     <p>Привет, Петр! Как дела?</p>
@@ -151,8 +152,10 @@
             </div>
         </div>
         <div class="chatInputs">
-            <input type="text" placeholder="Сообщение...">
-            <button>ОТПРАВИТЬ</button>
+            <form id="form">
+                <input type="text" placeholder="Сообщение..." id="input">
+                <button>ОТПРАВИТЬ</button>
+            </form>
         </div>
     </div>
 </body>
