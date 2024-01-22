@@ -6,150 +6,14 @@
     <title>UNIXE-CHAT</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
-    <script src="https://cdn.socket.io/4.5.3/socket.io.min.js"></script>
-    <script src='script.js'></script>
 </head>
 <body>
     <div class="chatList">
         <div class="titleChat">
             <h1>UNIXE-CHAT</h1>
+            <button onclick="chaneNickname()">ИЗМЕНИТЬ НИКНЕЙМ</button>
         </div>
-        <div class="chatMessages" id="messages">
-            <div class="leftMessage">
-                <div class="leftMessageContent">
-                    <p>Привет, Петр! Как дела?</p>
-                </div>
-            </div>
-            <div class="rightMessage">
-                <div class="rightMessageContent">
-                    <p>Привет, Анна! Дела как у зайца перед забегом. А у тебя?</p>
-                </div>
-            </div>
-            <div class="leftMessage">
-                <div class="leftMessageContent">
-                    <p>Ого, у меня как у белки перед тем, как уронить орех с дерева. То есть, нормально.</p>
-                </div>
-            </div>
-            <div class="rightMessage">
-                <div class="rightMessageContent">
-                    <p>Это звучит, как весёлый беспорядок. Что нового?</p>
-                </div>
-            </div>
-            <div class="leftMessage">
-                <div class="leftMessageContent">
-                    <p>Новость номер один: я научилась медитировать. Теперь я не просто бегаю от проблем, а ещё и пытаюсь их успокоить.</p>
-                </div>
-            </div>
-            <div class="rightMessage">
-                <div class="rightMessageContent">
-                    <p>Вау, это прогресс! А я вчера научился готовить яичницу. Теперь я мастер омлета.</p>
-                </div>
-            </div>
-            <div class="leftMessage">
-                <div class="leftMessageContent">
-                    <p>Омлет - это, конечно, важный навык. Ты готов к настоящим кулинарным баталиям!</p>
-                </div>
-            </div>
-            <div class="rightMessage">
-                <div class="rightMessageContent">
-                    <p>А как твои попытки с кулинарией? Ты что-то новенькое придумала?</p>
-                </div>
-            </div>
-            <div class="leftMessage">
-                <div class="leftMessageContent">
-                    <p>Попробовала приготовить пельмени. Но они выглядят, как если бы их делал кот с лапами. В итоге, у меня теперь пельмени в стиле "абстракционизм".</p>
-                </div>
-            </div>
-            <div class="rightMessage">
-                <div class="rightMessageContent">
-                    <p>Это звучит как кулинарное искусство! Я бы попробовал такие пельмени. Может, они приносят вдохновение?</p>
-                </div>
-            </div>
-            <div class="leftMessage">
-                <div class="leftMessageContent">
-                    <p>Да, вдохновляют меня нести их в мусорку и заказать пиццу.</p>
-                </div>
-            </div>
-            <div class="rightMessage">
-                <div class="rightMessageContent">
-                    <p>Согласен, это тоже вид творчества. А вообще, какой у тебя секрет успеха?</p>
-                </div>
-            </div>
-            <div class="leftMessage">
-                <div class="leftMessageContent">
-                    <p>Мой секрет - в том, чтобы делать вид, что я знаю, что делаю. Пока никто не догадался!</p>
-                </div>
-            </div>
-            <div class="rightMessage">
-                <div class="rightMessageContent">
-                    <p>Ух, ты настоящий гуру в области "делай вид". Прямо как мастер маскировки!</p>
-                </div>
-            </div>
-            <div class="leftMessage">
-                <div class="leftMessageContent">
-                    <p>Да, я также учусь у хамелеонов. Иногда я даже пытаюсь стать цветной, чтобы смешаться с обстановкой. Результаты весьма забавные</p>
-                </div>
-            </div>
-            <div class="rightMessage">
-                <div class="rightMessageContent">
-                    <p>Это звучит, как приключение. Ты, кажется, всегда находишь весёлые способы справляться с жизнью.</p>
-                </div>
-            </div>
-            <div class="leftMessage">
-                <div class="leftMessageContent">
-                    <p>Жизнь - это как карусель. Иногда крутишься весело, а иногда тошнит.</p>
-                </div>
-            </div>
-            <div class="rightMessage">
-                <div class="rightMessageContent">
-                    <p>Так точно! Давай надеяться, что у нас больше весёлых вращений, чем тошноты.</p>
-                </div>
-            </div>
-            <div class="leftMessage">
-                <div class="leftMessageContent">
-                    <p>Согласна! И помни, если жизнь кидает тебе лимон, просто добавь воды и сахара - и у тебя лимонад!</p>
-                </div>
-            </div>
-            <div class="rightMessage">
-                <div class="rightMessageContent">
-                    <p>Ты, кажется, знаешь все ответы на вопросы жизни. Может, ты ещё знаешь, как приручить тигра?</p>
-                </div>
-            </div>
-            <div class="leftMessage">
-                <div class="leftMessageContent">
-                    <p>О да, легко! Просто скажи ему, что ты дрессировщик единорогов. Тигры обожают единорогов.</p>
-                </div>
-            </div>
-            <div class="rightMessage">
-                <div class="rightMessageContent">
-                    <p>Ясно, буду готовиться к встрече с тигром. Спасибо за совет!</p>
-                </div>
-            </div>
-            <div class="leftMessage">
-                <div class="leftMessageContent">
-                    <p>Не за что, Петр! Всегда рада помочь в деликатных вопросах, таких как дрессировка тигров и приготовление пельменей.</p>
-                </div>
-            </div>
-            <div class="rightMessage">
-                <div class="rightMessageContent">
-                    <p>Это точно! Ты умеешь находить веселье в любой ситуации. Помню, почему я с тобой дружу!</p>
-                </div>
-            </div>
-            <div class="leftMessage">
-                <div class="leftMessageContent">
-                    <p>И я помню, почему ты мой друг - потому что смеяться вдвойне веселее!</p>
-                </div>
-            </div>
-            <div class="rightMessage">
-                <div class="rightMessageContent">
-                    <p>Весело и смешно, как всегда. Давай встретимся на следующей карусели жизни!</p>
-                </div>
-            </div>
-            <div class="leftMessage">
-                <div class="leftMessageContent">
-                    <p>До встречи на карусели, Петр! Пусть у нас будет много весёлых кругов!</p>
-                </div>
-            </div>
+        <div class="chatMessages" id="message">
         </div>
         <div class="chatInputs">
             <form id="form">
@@ -159,4 +23,6 @@
         </div>
     </div>
 </body>
+<script src="https://cdn.socket.io/4.5.3/socket.io.min.js" integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi" crossorigin="anonymous"></script>
+<script src='script.js'></script>
 </html>

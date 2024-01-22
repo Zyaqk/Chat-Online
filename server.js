@@ -24,8 +24,13 @@ const io = new Server(server);
 
 io.on('connection', (socket) => {
     console.log('a user connected. id -' + socket.id);
+    let userNickname = 'user';
 
     socket.on('new_message', (message) => {
-        console.log(message);
+        io.emit('message', userNickname + ': ' + message);
+    })
+
+    socket.on('set_nickname', (nickname) => {
+        userNickname = nickname;
     })
 })
