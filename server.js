@@ -1,17 +1,31 @@
 const http = require('http');
 const path = require('path');
 const fs = require('fs');
+const db = require('./database');
 
 const indexHtmlFile = fs.readFileSync(path.join(__dirname, 'static', 'index.html'));
 const styleCssFile = fs.readFileSync(path.join(__dirname, 'static', 'style.css'));
 const scriptJsFile = fs.readFileSync(path.join(__dirname, 'static', 'script.js'));
 
+const registerHtmlFile = fs.readFileSync(path.join(__dirname, 'static', 'register.html'));
+const registerCssFile = fs.readFileSync(path.join(__dirname, 'static', 'styleregister.css'));
+const registerJsFile = fs.readFileSync(path.join(__dirname, 'static', 'scriptregister.js'));
 
 const server = http.createServer((request, response) => {
-    switch(request.url) {
-        case '/': return response.end(indexHtmlFile);
-        case '/style.css': return response.end(styleCssFile);
-        case '/script.js': return response.end(scriptJsFile);
+    if (request.method === 'GET') {
+        switch(request.url) {
+            case '/': return response.end(indexHtmlFile);
+            case '/style.css': return response.end(styleCssFile);
+            case '/script.js': return response.end(scriptJsFile);
+            case '/register': return response.end(registerHtmlFile);
+            case '/styleregister.css': return response.end(registerCssFile);
+            case '/scriptregister.js': return response.end(registerJsFile);
+        }
+    }
+    if (request.method === 'POST') {
+        switch(request.url) {
+            case '/api/register': return registerUser(request, response);
+        }
     }
     response.statusCode = 404;
     return response.end('Error 404');
@@ -20,17 +34,29 @@ const server = http.createServer((request, response) => {
 server.listen(3000);
 
 const { Server } = require('socket.io');
+const { response } = require('express');
 const io = new Server(server);
 
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
     console.log('a user connected. id -' + socket.id);
     let userNickname = 'user';
+    let messages = await db.getMessages();
 
     socket.on('new_message', (message) => {
+        db.addMessage(message, 1);
         io.emit('message', userNickname + ': ' + message);
     })
 
     socket.on('set_nickname', (nickname) => {
         userNickname = nickname;
     })
+})
+
+let data = '';
+request.on('data', function(chunk) {
+    data += chunk;
+})
+request.on('end', function() {
+    console.log(data);
+    return response.end();
 })

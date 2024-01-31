@@ -13,6 +13,7 @@
   "author": "zya1lk",
   "license": "ISC",
   "dependencies": {
+    "database": "^0.0.2",
     "socket.io": "^4.7.3",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.6"
