@@ -1,7 +1,7 @@
 const http = require('http');
 const path = require('path');
 const fs = require('fs');
-const db = require('./database');
+const db = require('database');
 
 const indexHtmlFile = fs.readFileSync(path.join(__dirname, 'static', 'index.html'));
 const styleCssFile = fs.readFileSync(path.join(__dirname, 'static', 'style.css'));
@@ -25,16 +25,40 @@ const server = http.createServer((request, response) => {
     if (request.method === 'POST') {
         switch(request.url) {
             case '/api/register': return registerUser(request, response);
+            
         }
     }
     response.statusCode = 404;
     return response.end('Error 404');
 })
 
+function registerUser(request, response) {
+    let data = '';
+    request.on('data', function(chunk) {
+        data += chunk;
+    });
+    request.on('end', async function() {
+        try {
+            const user = JSON.parse(data);
+            if (!user.login || !user.password) {
+                return response.end('Empty login or password!');
+            }
+            if (await db.isUserExits(user.login)) {
+                return response.end('User already exist');
+            }
+            await db.addUser(user);
+            return response.end('Registration is successfull!');
+        } catch(e) {
+            return response.end('Error: ' + e);
+        }
+    })
+}
+
 server.listen(3000);
 
 const { Server } = require('socket.io');
 const { response } = require('express');
+const { request } = require('https');
 const io = new Server(server);
 
 io.on('connection', async (socket) => {
@@ -50,13 +74,4 @@ io.on('connection', async (socket) => {
     socket.on('set_nickname', (nickname) => {
         userNickname = nickname;
     })
-})
-
-let data = '';
-request.on('data', function(chunk) {
-    data += chunk;
-})
-request.on('end', function() {
-    console.log(data);
-    return response.end();
 })
